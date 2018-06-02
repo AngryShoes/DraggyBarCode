@@ -43,10 +43,7 @@ namespace WinformDragDemo
                     FileInfo fileInfo = new FileInfo(file);
                     string filePath = fileInfo.FullName;
                     barcodeString = GetBarCodes(filePath);
-                    if (barcodeString.Length == 0)
-                    {
-                        textBox1.Clear();
-                    }
+                    if (barcodeString.Length == 0) return;
                 }
                 textBox1.Text = barcodeString;
             }
@@ -66,7 +63,7 @@ namespace WinformDragDemo
             reader.Options.CharacterSet = "UTF-8";
             Bitmap bitmap = new Bitmap(filePath);
             ZXing.Result result = reader.Decode(bitmap);
-            return result == null ? " " : result.Text;
+            return result == null ? "" : result.Text;
         }
     }
 }
