@@ -1,0 +1,3 @@
+echo buildng WinformDragDemo.sln, please wait...
+%windir%\Microsoft.NET\Framework\v4.0.30319\MsBuild.exe WinformDragDemo.sln /t:Rebuild  /p:Configuration=Debug /p:Platform="Any CPU"
+pause
