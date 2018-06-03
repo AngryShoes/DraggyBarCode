@@ -43,7 +43,10 @@ namespace WinformDragDemo
                     FileInfo fileInfo = new FileInfo(file);
                     string filePath = fileInfo.FullName;
                     barcodeString = GetBarCodes(filePath);
-                    if (barcodeString.Length == 0) return;
+                    if (barcodeString.Length == 0)
+                    {
+                        textBox1.Clear();
+                    }
                 }
                 textBox1.Text = barcodeString;
             }
