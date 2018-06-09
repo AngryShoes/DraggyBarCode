@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using ZXing;
+using ZXing.Common;
 using BarcodeReader = BarcodeLib.BarcodeReader.BarcodeReader;
 using BarcodeReaderInZXing = ZXing.BarcodeReader;
 
@@ -49,6 +51,7 @@ namespace WinformDragDemo
                     }
                 }
                 textBox1.Text = barcodeString;
+                GenerateBarCode(textBox1.Text);
             }
         }
 
@@ -67,6 +70,23 @@ namespace WinformDragDemo
             Bitmap bitmap = new Bitmap(filePath);
             ZXing.Result result = reader.Decode(bitmap);
             return result == null ? "" : result.Text;
+        }
+
+        private void GenerateBarCode(string text)
+        {
+            BarcodeWriter writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.CODE_128;
+            EncodingOptions options = new EncodingOptions()
+            {
+                Width = 150,
+                Height = 50,
+                Margin = 2
+            };
+            writer.Options = options;
+            Bitmap bitmap = writer.Write(text);
+            pictureBox1.Width = 180;
+            pictureBox1.Height = 80;
+            pictureBox1.Image = bitmap;
         }
     }
 }
